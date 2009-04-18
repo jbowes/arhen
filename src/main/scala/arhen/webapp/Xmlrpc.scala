@@ -6,7 +6,7 @@ import javax.servlet.http.{HttpServletRequest, HttpServletResponse}
 import redstone.xmlrpc.{XmlRpcServlet, XmlRpcCustomSerializer, XmlRpcSerializer}
 
 import arhen.xmlrpc._
-import Reflection.ScalaReflection._
+import ScalaReflection._
 
 class XmlRpcInvocationHandler (var name: String, var objekt: Object)
 

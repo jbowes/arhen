@@ -1,7 +1,7 @@
 // From http://gist.github.com/87519
 // XXX Really should mixin manually so this isn't on every object
 
-package arhen.webapp.Reflection
+package arhen.webapp
 
 import scala.Console._
 import scala.tools.nsc.util.NameTransformer._
