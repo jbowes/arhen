@@ -9,6 +9,7 @@ Prerequisites
 -------------
 
 To build and run Arhen you'll need:
+
 * [Buildr](http://apache.buildr.org)
 * [Scala](http://www.scala-lang.org)
 * [Ruby](http://www.ruby-lang.org) (for buildr)
