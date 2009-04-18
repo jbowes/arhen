@@ -10,7 +10,7 @@ import ScalaReflection._
 
 class XmlRpcInvocationHandler (var name: String, var objekt: Object)
 
-class Server (handlers: List[XmlRpcInvocationHandler]) {
+class System (handlers: List[XmlRpcInvocationHandler]) {
   def listMethods() = {
     var methods :List[String] = Nil
     
@@ -37,7 +37,7 @@ class ScalaListSerializer extends XmlRpcCustomSerializer {
 
 class Xmlrpc extends XmlRpcServlet {
 
-  var server :Server = _
+  var system :System = _
 
   override def init(servletConfig: ServletConfig) {
      super.init(servletConfig) 
@@ -54,8 +54,8 @@ class Xmlrpc extends XmlRpcServlet {
        getXmlRpcServer().addInvocationHandler(handler.name, handler.objekt)
      }
 
-     this.server = new Server(invocationHandlers)
-     getXmlRpcServer().addInvocationHandler("server", this.server)
+     this.system = new System(invocationHandlers)
+     getXmlRpcServer().addInvocationHandler("system", this.system)
   }
 
   override def doGet(servletRequest: HttpServletRequest,
@@ -66,7 +66,7 @@ class Xmlrpc extends XmlRpcServlet {
     writer.write("<body>")
     
     writer.write("<ul>")
-    for (method <- this.server.listMethods())
+    for (method <- this.system.listMethods())
       writer.write("<li>" + method + "\n")
     writer.write("</ul>")
 
