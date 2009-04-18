@@ -50,7 +50,13 @@ them in your .bash_profile:
 
     echo "export JAVA_HOME=/usr/lib/jvm/java" >> ~/.bash_profile
     echo "export SCALA_HOME=/usr/share/scala" >> ~/.bash_profile
-    source ~/.bash_profile
+
+If you've installed your gems in your home directory, make sure to add them to
+your path:
+
+    echo "export PATH=\$PATH:\$HOME/.gem/ruby/1.8/bin" >> ~/.bash_profile
+
+You'll probably need to `source ~/.bash_profile` after all this.
 
 To launch jetty:
 
