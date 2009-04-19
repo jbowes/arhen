@@ -10,6 +10,10 @@ import arhen.xmlrpc._
 
 class XmlRpcInvocationHandler (var name: String, var objekt: Object)
 
+/**
+ * XML-RPC Introspection extensions, as outlined at
+ * http://scripts.incutio.com/xmlrpc/introspection.html
+ **/
 class System (handlers: List[XmlRpcInvocationHandler]) {
   def listMethods() = {
     var methods :List[String] = Nil
