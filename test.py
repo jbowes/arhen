@@ -12,3 +12,5 @@ pprint.pprint(s.system.listMethods())
 
 pprint.pprint(s.system.methodSignature('echo.echo'))
 pprint.pprint(s.system.methodSignature('ping.ping'))
+
+pprint.pprint(s.system.methodHelp('ping.ping'))

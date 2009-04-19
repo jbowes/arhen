@@ -40,6 +40,8 @@ class System (handlers: List[XmlRpcInvocationHandler]) {
         .++(method.getParameterTypes.map(classToXmlRpcType(_)))
       }
   }
+
+  def methodHelp(qualifiedMethod: String) = "methodHelp is not Implemented"
 }
 
 class ScalaListSerializer extends XmlRpcCustomSerializer {
