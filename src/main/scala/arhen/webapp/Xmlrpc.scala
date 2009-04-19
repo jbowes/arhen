@@ -22,6 +22,24 @@ class System (handlers: List[XmlRpcInvocationHandler]) {
 
     methods.filter(!_.endsWith("$tag"))
   }
+
+  private def classToXmlRpcType(klass :Any) = {
+    "string"
+  }
+
+  def methodSignature(qualifiedMethod: String) = {
+    var signatures :List[List[String]] = Nil
+    val parts = List.fromString(qualifiedMethod, '.')
+    val methodName = parts.last
+    val handlerName = parts.dropRight(1).reduceLeft { (b, a) => b + "." + a }
+
+    val handler = handlers.filter(_.name == handlerName).head
+
+    handler.objekt.getClass.getDeclaredMethods.filter(_.getName != "$tag")
+      .map {method => List(classToXmlRpcType(method.getReturnType))
+        .++(method.getParameterTypes.map(classToXmlRpcType(_)))
+      }
+  }
 }
 
 class ScalaListSerializer extends XmlRpcCustomSerializer {
@@ -46,6 +64,7 @@ class Xmlrpc extends XmlRpcServlet {
      serializer.addCustomSerializer(new ScalaListSerializer)
      
      val invocationHandlers = List(
+       new XmlRpcInvocationHandler("echo", new Echo()),
        new XmlRpcInvocationHandler("ping", new Ping()),
        new XmlRpcInvocationHandler("registration", new Registration())
      )
