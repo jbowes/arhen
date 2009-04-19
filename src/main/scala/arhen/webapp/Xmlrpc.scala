@@ -6,7 +6,7 @@ import javax.servlet.http.{HttpServletRequest, HttpServletResponse}
 import redstone.xmlrpc.{XmlRpcServlet, XmlRpcCustomSerializer, XmlRpcSerializer}
 
 import arhen.xmlrpc._
-import ScalaReflection._
+
 
 class XmlRpcInvocationHandler (var name: String, var objekt: Object)
 
@@ -15,12 +15,12 @@ class System (handlers: List[XmlRpcInvocationHandler]) {
     var methods :List[String] = Nil
     
     handlers.foreach {
-      handler => handler.objekt.methods.foreach {
-        method => methods = methods ::: List(handler.name + "." + method)
+      handler => handler.objekt.getClass.getDeclaredMethods.foreach {
+        method => methods = methods ::: List(handler.name + "." + method.getName)
       }
     }
 
-    methods
+    methods.filter(!_.endsWith("$tag"))
   }
 }
 
